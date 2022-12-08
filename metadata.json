@@ -42,7 +42,7 @@
       ]
     },
     {
-      "operatingsystem":Rocky",
+      "operatingsystem": "Rocky",
       "operatingsystemrelease": [
         "8"
       ]
