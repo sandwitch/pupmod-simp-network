@@ -8,10 +8,11 @@ describe 'network::eth' do
 
         context 'with default parameters' do
           let(:title) { 'default_eth' }
-          let(:expected) {
-            content = File.read('spec/expected/default_eth')
+          let!(:expected) {
+            el_maj_release = facts[:os][:release][:major]
+            content = File.read("spec/expected/default_eth.el#{el_maj_release}")
 
-            if os_facts[:os][:release][:major] > '7' ||
+            if el_maj_release > '7' ||
                 (os_facts[:simplib__networkmanager] && os_facts[:simplib__networkmanager][:enabled])
 
               content.gsub!(/^NM_CONTROLLED=\S+/m, 'NM_CONTROLLED=yes')
@@ -68,6 +69,7 @@ describe 'network::eth' do
           let(:title) { 'everything_eth' }
           let(:params) {{
             :arp                              => true,
+            :autoconnect_slaves               => true,
             :auto_discover_mac                => true,
             :bonding                          => true,
             :bond_arp_interval                => 5,
@@ -138,10 +140,11 @@ describe 'network::eth' do
             :auto_restart                     => true,
           }}
           let(:expected) {
-            content = File.read('spec/expected/everything_eth')
+            el_maj_release = facts[:os][:release][:major]
+            content = File.read("spec/expected/everything_eth.el#{el_maj_release}")
 
-            if os_facts[:os][:release][:major] > '7' ||
-                (os_facts[:simplib__networkmanager] && os_facts[:simplib__networkmanager][:enabled])
+            if el_maj_release > '7' ||
+              (os_facts[:simplib__networkmanager] && os_facts[:simplib__networkmanager][:enabled])
 
               content.gsub!(/^NM_CONTROLLED=\S+/m, 'NM_CONTROLLED=yes')
             end
