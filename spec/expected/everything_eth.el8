@@ -42,7 +42,7 @@ SRCADDR=10.0.2.14
 NOZEROCONF=set
 DHCPRELEASE=yes
 DHCLIENT_IGNORE_GATEWAY=yes
-DHCLIENTARGS='-R broadcast-address time-offset routers -timeout 9999 -V SIMPy dhclient'
+DHCLIENTARGS='--request-options broadcast-address time-offset routers --timeout 9999 -V SIMPy dhclient'
 ETHTOOL_OPTS=speed 100 duplex full autoneg off
 REORDER_HDR=yes
 ARP=yes
@@ -50,3 +50,4 @@ LINKDELAY=5
 BRIDGE=br0
 NM_CONTROLLED=no
 BONDING_OPTS='arp_interval=5 arp_ip_target=192.168.1.1 #lacp_rate=1 max_bonds=5 miimon=100 downdelay=2 updelay=3 mode=4 bond_use_carrier=1 xmit_hash_policy=layer2+3'
+AUTOCONNECT_SLAVES=yes
